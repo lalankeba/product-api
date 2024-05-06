@@ -49,3 +49,10 @@ Delete
 ------
 curl -X DELETE http://localhost:3000/products/6638ff900a4b572b3fc96c5b | jq .
 
+
+
+
+
+User Registration
+-----------------
+curl http://localhost:3000/auth/register/ -H 'Content-Type: application/json' -d '{ "name": "John Doe", "username": "john@gmail.com", "password": "abcd1234" }' | jq .
