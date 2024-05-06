@@ -1,0 +1,51 @@
+create product
+--------------
+curl http://localhost:3000/products/ -H 'Content-Type: application/json' -d '{ "name": "Surf", "description": "Detergent powder", "status": "AVAILABLE" }' | jq .
+
+curl http://localhost:3000/products/ -H 'Content-Type: application/json' -d '{ "name": "Toblerone", "description": "Delecious chocolates", "status": "AVAILABLE" }' | jq .
+
+# Output
+{
+  "name": "Toblerone",
+  "description": "Delecious chocolates",
+  "status": "AVAILABLE",
+  "_id": "6638fe070a4b572b3fc96c56",
+  "createdAt": "2024-05-06T15:57:59.499Z",
+  "updatedAt": "2024-05-06T15:57:59.499Z",
+  "__v": 0
+}
+
+
+
+
+
+get products
+------------
+curl http://localhost:3000/products | jq .
+
+
+
+
+
+
+get product by id
+-----------------
+curl http://localhost:3000/products/6638fdee0a4b572b3fc96c54 | jq .
+
+
+
+
+
+
+Update
+------
+curl -X PUT http://localhost:3000/products/6638fdee0a4b572b3fc96c54 -H 'Content-Type: application/json' -d '{ "name": "Surf Excel", "description": "Detergent Powder with super powers", "status": "AVAILABLE" }' | jq .
+
+
+
+
+
+Delete
+------
+curl -X DELETE http://localhost:3000/products/6638ff900a4b572b3fc96c5b | jq .
+
