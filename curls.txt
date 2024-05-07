@@ -1,7 +1,6 @@
 create product
 --------------
 curl http://localhost:3000/products/ -H 'Content-Type: application/json' -d '{ "name": "Surf", "description": "Detergent powder", "status": "AVAILABLE" }' | jq .
-
 curl http://localhost:3000/products/ -H 'Content-Type: application/json' -d '{ "name": "Toblerone", "description": "Delecious chocolates", "status": "AVAILABLE" }' | jq .
 
 # Output
@@ -56,3 +55,12 @@ curl -X DELETE http://localhost:3000/products/6638ff900a4b572b3fc96c5b | jq .
 User Registration
 -----------------
 curl http://localhost:3000/auth/register/ -H 'Content-Type: application/json' -d '{ "name": "John Doe", "username": "john@gmail.com", "password": "abcd1234" }' | jq .
+
+
+
+
+
+
+User Login
+----------
+curl http://localhost:3000/auth/login/ -H 'Content-Type: application/json' -d '{ "username": "john@gmail.com", "password": "abcd1234" }' | jq .
