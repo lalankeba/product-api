@@ -2,7 +2,12 @@ const productSchema = require('../schema/productSchema');
 
 const getProducts = async (req, res) => {
     try {
-        const products = await productSchema.find({}, { name: 1, description: 1, status: 1 });
+        const page = req.query.page || 0;
+        const size = req.query.size || 5;
+        const products = await productSchema
+            .find({}, { name: 1, description: 1, status: 1 })
+            .skip(page * size)
+            .limit(size);
         res.status(200).json(products);
     } catch (err) {
         res.status(500).json({ message: err.message });
