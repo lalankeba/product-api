@@ -1,7 +1,26 @@
+User Registration
+-----------------
+curl http://localhost:3000/auth/register/ -H 'Content-Type: application/json' -d '{ "name": "John Doe", "username": "john@gmail.com", "password": "abcd1234" }' | jq .
+curl http://localhost:3000/auth/register/ -H 'Content-Type: application/json' -d '{ "name": "Lisa Anne", "username": "lisa@gmail.com", "password": "abcd1234" }' | jq .
+
+
+
+
+
+
+User Login
+----------
+curl http://localhost:3000/auth/login/ -H 'Content-Type: application/json' -d '{ "username": "john@gmail.com", "password": "abcd1234" }' | jq .
+curl http://localhost:3000/auth/login/ -H 'Content-Type: application/json' -d '{ "username": "lisa@gmail.com", "password": "abcd1234" }' | jq .
+
+
+
+
+
+
 create product
 --------------
-curl http://localhost:3000/products/ -H 'Content-Type: application/json' -d '{ "name": "Surf", "description": "Detergent powder", "status": "AVAILABLE" }' | jq .
-curl http://localhost:3000/products/ -H 'Content-Type: application/json' -d '{ "name": "Toblerone", "description": "Delecious chocolates", "status": "AVAILABLE" }' | jq .
+curl http://localhost:3000/products/ -H 'Content-Type: application/json' -H 'Authorization: Bearer <token>' -d '{ "name": "Toblerone", "description": "Delecious chocolates", "status": "AVAILABLE" }' | jq .
 
 # Output
 {
@@ -20,7 +39,7 @@ curl http://localhost:3000/products/ -H 'Content-Type: application/json' -d '{ "
 
 get products
 ------------
-curl http://localhost:3000/products | jq .
+curl http://localhost:3000/products -H 'Authorization: Bearer <token>' | jq .
 
 
 
@@ -29,7 +48,7 @@ curl http://localhost:3000/products | jq .
 
 get product by id
 -----------------
-curl http://localhost:3000/products/6638fdee0a4b572b3fc96c54 | jq .
+curl http://localhost:3000/products/6638fdee0a4b572b3fc96c54 -H 'Authorization: Bearer <token>' | jq .
 
 
 
@@ -38,7 +57,7 @@ curl http://localhost:3000/products/6638fdee0a4b572b3fc96c54 | jq .
 
 Update
 ------
-curl -X PUT http://localhost:3000/products/6638fdee0a4b572b3fc96c54 -H 'Content-Type: application/json' -d '{ "name": "Surf Excel", "description": "Detergent Powder with super powers", "status": "AVAILABLE" }' | jq .
+curl -X PUT http://localhost:3000/products/6638fdee0a4b572b3fc96c54 -H 'Content-Type: application/json' -H 'Authorization: Bearer <token>' -d '{ "name": "Surf Excel", "description": "Detergent Powder with super powers", "status": "AVAILABLE" }' | jq .
 
 
 
@@ -46,21 +65,6 @@ curl -X PUT http://localhost:3000/products/6638fdee0a4b572b3fc96c54 -H 'Content-
 
 Delete
 ------
-curl -X DELETE http://localhost:3000/products/6638ff900a4b572b3fc96c5b | jq .
+curl -X DELETE http://localhost:3000/products/6638ff900a4b572b3fc96c5b -H 'Authorization: Bearer <token>' | jq .
 
 
-
-
-
-User Registration
------------------
-curl http://localhost:3000/auth/register/ -H 'Content-Type: application/json' -d '{ "name": "John Doe", "username": "john@gmail.com", "password": "abcd1234" }' | jq .
-
-
-
-
-
-
-User Login
-----------
-curl http://localhost:3000/auth/login/ -H 'Content-Type: application/json' -d '{ "username": "john@gmail.com", "password": "abcd1234" }' | jq .
