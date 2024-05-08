@@ -1,16 +1,18 @@
 const express = require('express');
 const { getProducts, getProduct, createProduct, updateProduct, deleteProduct } = require('../controller/productController');
+const passport = require('passport');
+const checkRoles = require('../middleware/checkRoles');
 
 const router = express.Router();
 
-router.get('/', getProducts);
+router.get('/', passport.authenticate('jwt', { session: false }), getProducts);
 
-router.get('/:id', getProduct);
+router.get('/:id', passport.authenticate('jwt', { session: false }), getProduct);
 
-router.post('/', createProduct);
+router.post('/', passport.authenticate('jwt', { session: false }), checkRoles(['ADMIN']), createProduct);
 
-router.put('/:id', updateProduct);
+router.put('/:id', passport.authenticate('jwt', { session: false }), checkRoles(['ADMIN']), updateProduct);
 
-router.delete('/:id', deleteProduct);
+router.delete('/:id', passport.authenticate('jwt', { session: false }), checkRoles(['ADMIN']), deleteProduct);
 
 module.exports = router;

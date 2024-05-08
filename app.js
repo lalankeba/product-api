@@ -1,14 +1,18 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
-const dotenv = require('dotenv');
 const productRoute = require('./route/productRoute');
 const authRoute = require('./route/authRoute');
+const passport = require('passport');
+const passportConfig = require('./middleware/passportConfig');
 
-dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
+app.use(passport.initialize());
+
+passportConfig(passport);
 
 app.use('/products', productRoute);
 app.use('/auth', authRoute);
