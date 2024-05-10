@@ -9,7 +9,7 @@ const passportConfig = require('./middleware/passportConfig');
 const logger = require('./middleware/logger');
 
 const app = express();
-const port = process.env.PORT || 80;
+const port = process.env.PORT || 3000;
 
 app.use(logger);
 app.use(express.json());
