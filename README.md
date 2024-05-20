@@ -2,8 +2,6 @@
 
 ![Static Badge](https://img.shields.io/badge/personal-project-green)
 
-Simple product details api built with Node js, Express and Mongo database.
-
 This project is built with Node.js, Express, and MongoDB. It provides a simple API for managing product data within an organization. The application supports user authentication through JSON Web Tokens (JWT), ensuring secure access to various functionalities based on user roles.
 
 ## Features
