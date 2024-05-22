@@ -6,12 +6,12 @@ const productRoute = require('./route/productRoute');
 const authRoute = require('./route/authRoute');
 const passport = require('passport');
 const passportConfig = require('./middleware/passportConfig');
-const logger = require('./middleware/logger');
+const requestLogger = require('./middleware/requestLogger');
 
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.use(logger);
+app.use(requestLogger);
 app.use(express.json());
 app.use(passport.initialize());
 
