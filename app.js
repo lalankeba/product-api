@@ -9,11 +9,13 @@ const passportConfig = require('./middleware/passportConfig');
 const requestLogger = require('./middleware/requestLogger');
 const rateLimiter = require('./limiter/rateLimiter');
 const logger = require('./logger/logger');
+const path = require('path');
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(rateLimiter);
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(requestLogger);
 app.use(express.json());
 app.use(passport.initialize());
