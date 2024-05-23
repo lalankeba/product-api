@@ -1,6 +1,7 @@
 const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
 const userSchema = require('../schema/userSchema');
+const logger = require('../logger/logger');
 
 const opts = {
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -17,7 +18,7 @@ module.exports = (passport) => {
                 }
                 return done(null, false);
             } catch (err) {
-                console.log(err);
+                logger.error(err);
                 return done(err, false);
             }
         })

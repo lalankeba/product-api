@@ -8,6 +8,7 @@ const passport = require('passport');
 const passportConfig = require('./middleware/passportConfig');
 const requestLogger = require('./middleware/requestLogger');
 const rateLimiter = require('./limiter/rateLimiter');
+const logger = require('./logger/logger');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -25,11 +26,11 @@ app.use('/auth', authRoute);
 
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
-        console.log('Connected to database');
+        logger.info('Connected to database');
         app.listen(port, () => {
-            console.log(`App is running on port: ${port}`);
+            logger.info(`App is running on port: ${port}`);
         });        
     })
     .catch((error) => {
-        console.log('Error connecting with db ', error);
+        logger.error('Error connecting with db ', error);
     });

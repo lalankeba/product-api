@@ -2,6 +2,7 @@ const userSchema = require('../schema/userSchema');
 const bcrypt = require('bcryptjs');
 const jsonwebtoken = require('jsonwebtoken');
 const { v4: uuidv4 } = require('uuid');
+const logger = require('../logger/logger');
 
 const register = async (req, res) => {
     try {
@@ -13,7 +14,7 @@ const register = async (req, res) => {
         await userSchema.create({ name: name, username: username, password: hashedPassword });
         res.status(201).json({ message: `User: ${name} registered` });
     } catch (err) {
-        console.error('Registration error: ', err.message);
+        logger.error('Registration error: ', err.message);
         res.status(500).json({ message: err.message });
     }
 }
