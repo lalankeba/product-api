@@ -7,10 +7,12 @@ const authRoute = require('./route/authRoute');
 const passport = require('passport');
 const passportConfig = require('./middleware/passportConfig');
 const requestLogger = require('./middleware/requestLogger');
+const rateLimiter = require('./limiter/rateLimiter');
 
 const app = express();
 const port = process.env.PORT || 3000;
 
+app.use(rateLimiter);
 app.use(requestLogger);
 app.use(express.json());
 app.use(passport.initialize());
