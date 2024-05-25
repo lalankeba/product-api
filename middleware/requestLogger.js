@@ -1,7 +1,13 @@
 const logger = require('../logger/logger');
 
 const requestLogger = (req, res, next) => {
-    let ipAddress = req.ip;
+    let ipAddress = getIpAddress(req);
+    logger.info(`From: ${ipAddress} ${req.method} ${req.url}`);
+    next();
+}
+
+const getIpAddress = (req) => {
+  let ipAddress = req.ip;
 
     if (req.headers['x-forwarded-for']) {
       ipAddress = req.headers['x-forwarded-for'].split(',').shift();
@@ -16,9 +22,7 @@ const requestLogger = (req, res, next) => {
     if (ipAddress.startsWith('::ffff:')) {
         ipAddress = ipAddress.split('::ffff:')[1];
     }
-
-    logger.info(`From: ${ipAddress} ${req.method} ${req.url}`);
-    next();
+    return ipAddress;
 }
 
 module.exports = requestLogger;
